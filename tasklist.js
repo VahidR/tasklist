@@ -36,9 +36,24 @@ function TaskAtHandApp () {
 
   function addTaskElement(taskName) {
     var $task = $("<li></li>"); // the $ before variable is a good practice to remember it points to a jQuery object.
-    $task.text(taskName);
-    //var $task = "<li>" + taskName + "</li>"; // this is another (simpler?) way..
+    var $delete = $("<button class='delete'>X</button>");
+    var $moveUp = $("<button class='moveUP'>^</button>");
+    var $moveDown = $("<button class='moveDown'>v</button>");
+
+    $task.append($delete).append($moveUp).append($moveDown).append("<span class='task-name'>" + taskName + "</span>");
     $("#task-list").append($task);
+
+    $delete.click(function(event){
+      $task.remove();
+    });
+
+    $moveUp.click(function(event){
+      $task.insertBefore($task.prev());
+    });
+
+    $moveDown.click(function(evnet){
+      $task.insertAfter($task.next());
+    });
   }
 
 
