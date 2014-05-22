@@ -9,7 +9,7 @@
 *  OBS. It is NOT an object literal.. it is constructure based initialization
 */
 function TaskAtHandApp () {
-  var version = "v1.0";
+  var version = " v1.0";
 
   function setStatus (message) {
     $("#app>footer").text(message);
@@ -19,7 +19,7 @@ function TaskAtHandApp () {
     $("#new-task-name").keypress(function(event){
       if(event.which == 13) { // enter key
         addTask();
-        return false;
+        return false; // stop broswer for furthur processing, and move to focus() call
       }
     }).focus();
     $("#app header").append(version);
@@ -37,6 +37,7 @@ function TaskAtHandApp () {
   function addTaskElement(taskName) {
     var $task = $("<li></li>"); // the $ before variable is a good practice to remember it points to a jQuery object.
     $task.text(taskName);
+    //var $task = "<li>" + taskName + "</li>"; // this is another (simpler?) way..
     $("#task-list").append($task);
   }
 
