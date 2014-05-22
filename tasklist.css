@@ -29,20 +29,44 @@ button {
   font-size: 1.5em;
   color: WhiteSmoke;
   background-color: #006;
+  border-radius: 5px;
 }
 
 #app>footer {
   padding: 0.25em;
   color: WhiteSmoke;
   background-color: #006;
+  border-radius: 5px;
 }
 
 #main {
-  margin: 1em;
+  margin: 1em auto;
+  max-width: 25em;
+  min-width: 9em;
+}
+
+#task-name {
+  font-size: 1em;
+  display: block;
+  width: 98%;
+}
+
+#task-list .task { /* this is each <li> */
+  position: relative;
+  list-style: none; /* removing <ul> dottes.. */
+  padding:0.25em;
+  margin: 0.25em;
+  background-color: beige;
+  border-radius: 4px;
+  box-shadow: 2px 2px 3px rgba(0,0,0,0.6);
 }
 
 #task-list .task .tools {
-  display: inline-block;
+  position: absolute; /* sets its position with its parent which is task */
+  top: 0.25em;
+  right: 0.25em;
+  border: 1px solid black;
+  border-radius: 2px;
 }
 
 #task-list .task .tools button {

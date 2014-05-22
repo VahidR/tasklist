@@ -9,7 +9,8 @@
 *  OBS. It is NOT an object literal.. it is constructure based initialization
 */
 function TaskAtHandApp () {
-  var version = " v1.0";
+  var version = " v1.3";
+  var appStorage = new AppStorage("taskAtHand");
 
   function setStatus (message) {
     $("#app>footer").text(message);
