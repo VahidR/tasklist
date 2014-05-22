@@ -22,6 +22,7 @@ function TaskAtHandApp () {
         return false; // stop broswer for furthur processing, and move to focus() call
       }
     }).focus();
+
     $("#app header").append(version);
     setStatus("ready");
   };
@@ -36,7 +37,7 @@ function TaskAtHandApp () {
 
   function addTaskElement(taskName) {
     var $task = $("#task-template .task").clone(); // copy an <li> and its children
-    $("span.task-name", $task).text(taskName); // second arg to $() tells to only search in context of task
+    $("span.task-name", $task).text(taskName); // second arg of $() tells to only search within the context of $task
     $("#task-list").append($task);
 
     $("button.delete", $task).click(function(event){
@@ -50,6 +51,30 @@ function TaskAtHandApp () {
     $("button.moveDown", $task).click(function(event){
       $task.insertAfter($task.next()); // insertAfter (next) is for moving down !!
     });
+
+    $("span.task-name", $task).click(function(event){
+        editTaskName($(this));
+    });
+
+    $("input.task-name", $task).change(function() {
+       onChangeTaskName($(this));
+      }).blur(function(){
+          $(this).hide().siblings("span.task-name").show();
+        });
+
+  }
+
+  function editTaskName ($span) {
+    $span.hide().siblings("input.task-name").val($span.text()).show().focus();
+  }
+
+  function onChangeTaskName ($input) {
+    $input.hide();
+    var $span = $input.siblings("span.task-name");
+    if($input.val()){
+      $span.text($input.val());
+    }
+    $span.show();
   }
 
 }
