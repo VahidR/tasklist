@@ -35,27 +35,22 @@ function TaskAtHandApp () {
   }
 
   function addTaskElement(taskName) {
-    var $task = $("<li></li>"); // the $ before variable is a good practice to remember it points to a jQuery object.
-    var $delete = $("<button class='delete'>X</button>");
-    var $moveUp = $("<button class='moveUP'>^</button>");
-    var $moveDown = $("<button class='moveDown'>v</button>");
-
-    $task.append($delete).append($moveUp).append($moveDown).append("<span class='task-name'>" + taskName + "</span>");
+    var $task = $("#task-template .task").clone(); // copy an <li> and its children
+    $("span.task-name", $task).text(taskName); // second arg to $() tells to only search in context of task
     $("#task-list").append($task);
 
-    $delete.click(function(event){
-      $task.remove();
+    $("button.delete", $task).click(function(event){
+      $task.remove(); // removes the <li>
     });
 
-    $moveUp.click(function(event){
-      $task.insertBefore($task.prev());
+    $("button.moveUp", $task).click(function(event){
+      $task.insertBefore($task.prev()); // insertBefore (prev) is for moving up !!
     });
 
-    $moveDown.click(function(evnet){
-      $task.insertAfter($task.next());
+    $("button.moveDown", $task).click(function(event){
+      $task.insertAfter($task.next()); // insertAfter (next) is for moving down !!
     });
   }
-
 
 }
 
