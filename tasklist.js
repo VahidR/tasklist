@@ -22,6 +22,9 @@ function TaskAtHandApp () {
         return false;
       }
     }).focus();
+    $("#app header").append(version);
+    setStatus("ready");
+  };
 
   function addTask() {
     var taskName = $("#new-task-name").val();
@@ -38,12 +41,6 @@ function TaskAtHandApp () {
   }
 
 
-
-
-};
-
-  $("#app header").append(version);
-  setStatus("ready")
 }
 
 /*
